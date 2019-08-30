@@ -16,6 +16,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        guard
+            let splitViewController = window?.rootViewController as? UISplitViewController,
+            let masterTabBarController = splitViewController.viewControllers.first as? UITabBarController,
+            let masterNavController = masterTabBarController.viewControllers?.first as? UINavigationController,
+            let detailViewController = splitViewController.viewControllers.last as? DetailViewController,
+            let masterViewController = masterNavController.topViewController as? ToolsTableViewController
+//            let detailViewController = detailNavController.topViewController as? DetailViewController
+        else { fatalError() }
+
+        let firstTool = masterViewController.tools.first
+        detailViewController.tool = firstTool
+
+        masterViewController.delegate = detailViewController
+
+//        detailViewController.navigationItem.leftItemsSupplementBackButton = true
+//        detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+
         return true
     }
 

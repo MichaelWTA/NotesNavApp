@@ -1,20 +1,19 @@
 //
-//  ViewController.swift
+//  MainSplitViewController.swift
 //  NotesNavApp
 //
 //  Created by Michael P on 8/30/19.
 //  Copyright © 2019 Michael P. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-class ViewController: UIViewController {
+final class MainSplitViewController: UISplitViewController, UISplitViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
 
 }
-
