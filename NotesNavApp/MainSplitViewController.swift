@@ -13,7 +13,7 @@ final class MainSplitViewController: UISplitViewController, UISplitViewControlle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        preferredDisplayMode = .allVisible
     }
-
-
 }

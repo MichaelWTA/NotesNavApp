@@ -1,5 +1,5 @@
 //
-//  ToolsTableViewController.swift
+//  ToolTableViewController.swift
 //  NotesNavApp
 //
 //  Created by Michael P on 8/30/19.
@@ -13,7 +13,7 @@ protocol ToolSelectionDelegate: class {
     func toolSelected(_ newTool: Tool)
 }
 
-final class ToolsTableViewController: UITableViewController {
+final class ToolTableViewController: UITableViewController {
 
     weak var delegate: ToolSelectionDelegate?
 
@@ -36,8 +36,11 @@ final class ToolsTableViewController: UITableViewController {
         let selectedTool = tools[indexPath.row]
         delegate?.toolSelected(selectedTool)
 
-        if let detailViewController = delegate as? DetailViewController {
-            splitViewController?.showDetailViewController(detailViewController, sender: nil)
+        if
+            let detailViewController = delegate as? DetailViewController,
+            let detailNavigationController = detailViewController.navigationController
+        {
+            splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
         }
     }
 }

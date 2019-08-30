@@ -19,20 +19,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         guard
             let splitViewController = window?.rootViewController as? UISplitViewController,
-            let masterTabBarController = splitViewController.viewControllers.first as? UITabBarController,
-            let masterNavController = masterTabBarController.viewControllers?.first as? UINavigationController,
-            let detailViewController = splitViewController.viewControllers.last as? DetailViewController,
-            let masterViewController = masterNavController.topViewController as? ToolsTableViewController
-//            let detailViewController = detailNavController.topViewController as? DetailViewController
+            let masterNavController = splitViewController.viewControllers.first as? UINavigationController,
+            let detailNavController = splitViewController.viewControllers.last as? UINavigationController,
+            let detailViewController = detailNavController.topViewController as? DetailViewController,
+            let masterTabController = masterNavController.topViewController as? CustomTabBarController
         else { fatalError() }
 
-        let firstTool = masterViewController.tools.first
-        detailViewController.tool = firstTool
+        masterTabController.loadViewIfNeeded()
 
-        masterViewController.delegate = detailViewController
+        guard
+            let toolTableViewController = masterTabController.children.first as? ToolTableViewController,
+            let accountTableViewController = masterTabController.children.last as? AccountTableViewController
+        else { fatalError() }
 
-//        detailViewController.navigationItem.leftItemsSupplementBackButton = true
-//        detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+        detailViewController.tool = toolTableViewController.tools.first
+
+        toolTableViewController.delegate = detailViewController
+        accountTableViewController.delegate = detailViewController
+
+        detailViewController.navigationItem.leftItemsSupplementBackButton = true
+        detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
 
         return true
     }

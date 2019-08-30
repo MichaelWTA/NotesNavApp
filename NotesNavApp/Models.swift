@@ -26,6 +26,15 @@ enum Tool {
 enum Account {
     case store
     case gasStation
+
+    var name: String {
+        switch self {
+        case .store:
+            return "Store"
+        case .gasStation:
+            return "Gas Station"
+        }
+    }
 }
 
 enum AccountTab {

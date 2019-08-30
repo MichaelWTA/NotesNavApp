@@ -18,6 +18,8 @@ final class DetailViewController: UIViewController {
         }
     }
 
+    var account: Account?
+
     private func refreshUI() {
         loadViewIfNeeded()
         contentLabel.text = tool?.name
@@ -27,5 +29,11 @@ final class DetailViewController: UIViewController {
 extension DetailViewController: ToolSelectionDelegate {
     func toolSelected(_ newTool: Tool) {
         tool = newTool
+    }
+}
+
+extension DetailViewController: AccountSelectionDelegate {
+    func accountSelected(_ newAccount: Account) {
+        account = newAccount
     }
 }
