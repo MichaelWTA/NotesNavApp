@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let accountTableViewController = masterTabController.children.last as? AccountTableViewController
         else { fatalError() }
 
-        detailViewController.tool = toolTableViewController.tools.first
+        detailViewController.cellDetail = toolTableViewController.tools.first
 
         toolTableViewController.delegate = detailViewController
         accountTableViewController.delegate = detailViewController

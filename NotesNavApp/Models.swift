@@ -9,7 +9,12 @@
 import Foundation
 import UIKit
 
-enum Tool {
+// is the model for both a cell and the detail view of that cell
+protocol CellDetailModel {
+    var name: String { get }
+}
+
+enum Tool: CellDetailModel {
     case kpi
     case orders
 
@@ -23,7 +28,7 @@ enum Tool {
     }
 }
 
-enum Account {
+enum Account: CellDetailModel {
     case store
     case gasStation
 

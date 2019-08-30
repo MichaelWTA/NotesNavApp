@@ -12,28 +12,20 @@ import UIKit
 final class DetailViewController: UIViewController {
     @IBOutlet weak var contentLabel: UILabel!
 
-    var tool: Tool? {
+    var cellDetail: CellDetailModel? {
         didSet {
             refreshUI()
         }
     }
 
-    var account: Account?
-
     private func refreshUI() {
         loadViewIfNeeded()
-        contentLabel.text = tool?.name
+        contentLabel.text = cellDetail?.name
     }
 }
 
-extension DetailViewController: ToolSelectionDelegate {
-    func toolSelected(_ newTool: Tool) {
-        tool = newTool
-    }
-}
-
-extension DetailViewController: AccountSelectionDelegate {
-    func accountSelected(_ newAccount: Account) {
-        account = newAccount
+extension DetailViewController: MasterSelectionDelegate {
+    func cellSelected(_ newCellModel: CellDetailModel) {
+        cellDetail = newCellModel
     }
 }

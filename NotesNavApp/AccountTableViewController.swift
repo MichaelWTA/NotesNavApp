@@ -9,13 +9,9 @@
 import Foundation
 import UIKit
 
-protocol AccountSelectionDelegate: class {
-    func accountSelected(_ newAccount: Account)
-}
-
 final class AccountTableViewController: UITableViewController {
 
-    weak var delegate: AccountSelectionDelegate?
+    weak var delegate: MasterSelectionDelegate?
 
     let accounts = [
         Account.store,
@@ -34,7 +30,7 @@ final class AccountTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedTool = accounts[indexPath.row]
-        delegate?.accountSelected(selectedTool)
+        delegate?.cellSelected(selectedTool)
 
         if
             let detailViewController = delegate as? DetailViewController,

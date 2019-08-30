@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-protocol ToolSelectionDelegate: class {
-    func toolSelected(_ newTool: Tool)
+protocol MasterSelectionDelegate: class {
+    func cellSelected(_ newCellDetail: CellDetailModel)
 }
 
 final class ToolTableViewController: UITableViewController {
 
-    weak var delegate: ToolSelectionDelegate?
+    weak var delegate: MasterSelectionDelegate?
 
     let tools = [
         Tool.kpi,
@@ -34,7 +34,7 @@ final class ToolTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedTool = tools[indexPath.row]
-        delegate?.toolSelected(selectedTool)
+        delegate?.cellSelected(selectedTool)
 
         if
             let detailViewController = delegate as? DetailViewController,
